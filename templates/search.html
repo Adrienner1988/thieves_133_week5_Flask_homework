@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{%block styles%} 
+  <link rel="stylesheet" href="../static/styles/search.css"> 
+{% endblock%}
+
+{% block title%}
+  Pokéman Search 
+{% endblock%}
+
+{% block content%}
+<form method='POST'>
+  <div class="mb-3">
+    <label for="search" class="form-label">Poké Search:</label>
+    <input type="text" class="form-control" id="search" aria-describedby="search" name="data">
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}
