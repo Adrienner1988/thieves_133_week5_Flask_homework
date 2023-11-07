@@ -23,10 +23,10 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Ability</th>
-      <th scope="col">Sprite</th>
       <th scope="col">Attack Stat</th>
       <th scope="col">HP Stat</th>
       <th scope="col">Defense Stat</th>
+      <th scope="col">Sprite</th>
     </tr>
   </thead>
   <tbody>
@@ -34,10 +34,10 @@
     <tr>
       <td>{{ data['name'] }}</td>
       <td>{{ data['ability'] }}</td>
-      <td>{{ data['sprite'] }}</td>
       <td>{{ data['attack_stat'] }}</td> 
       <td>{{ data['hp_stat'] }}</td>
       <td>{{ data['defense_stat'] }}</td>
+      <td><img src="{{ data['sprite'] }}" alt="shiny_sprite"></td>
     </tr>
 
   </tbody>

@@ -32,10 +32,10 @@ def get_pokemon_data(data):
                 'name': data['forms'][0]['name'],
                 'ability': data['abilities'][0]['ability']['name'],
                 'base_experience': data['base_experience'],
-                'sprite': data['sprites']['front_shiny'],
                 'attack_stat': data['stats'][1]['base_stat'],
                 'hp_stat': data['stats'][0]['base_stat'],
-                'defense_stat': data['stats'][2]['base_stat']
+                'defense_stat': data['stats'][2]['base_stat'],
+                'sprite': data['sprites']['front_shiny']
             }
         return pokemon_dict
 
