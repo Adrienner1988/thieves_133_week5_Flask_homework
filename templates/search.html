@@ -1,50 +1,46 @@
 {% extends 'base.html' %}
 
-{%block styles%} 
+{%block styles %} 
   <link rel="stylesheet" href="../static/styles/search.css"> 
+{% endblock %}
+
+{% block title %}
+  Pokémon Search 
 {% endblock%}
 
-{% block title%}
-  Pokéman Search 
-{% endblock%}
-
-{% block content%}
+{% block content %}
 <form method='POST'>
   <div class="mb-3">
-    <label for="search" class="form-label">Poké Search:</label>
+    <label for="search" class="form-label">Search Pokémon by Name or National Pokédex Number</label>
     <input type="text" class="form-control" id="search" aria-describedby="search" name="data">
   </div>
   <button type="submit" class="btn btn-primary">Search</button>
 </form>
-
+{% if data %}
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Name</th>
+      <th scope="col">Ability</th>
+      <th scope="col">Sprite</th>
+      <th scope="col">Attack Stat</th>
+      <th scope="col">HP Stat</th>
+      <th scope="col">Defense Stat</th>
     </tr>
   </thead>
   <tbody>
+    
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td>{{ data['name'] }}</td>
+      <td>{{ data['ability'] }}</td>
+      <td>{{ data['sprite'] }}</td>
+      <td>{{ data['attack_stat'] }}</td> 
+      <td>{{ data['hp_stat'] }}</td>
+      <td>{{ data['defense_stat'] }}</td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+
   </tbody>
 </table>
+{% endif%}
 {% endblock %}
