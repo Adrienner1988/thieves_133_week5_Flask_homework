@@ -1,7 +1,7 @@
 from flask import request, render_template
 import requests
 from app import app
-from app.forms import LoginForm, SearchForm
+from app.forms import LoginForm, SearchForm, SignUpForm 
 
 
 @app.route('/')
@@ -17,6 +17,13 @@ def login():
     else:
         return render_template('login.html', form=form)
     
+@app.route('.singup', methods=['GET', ['POST']])
+def signUp():
+    form = SignUpForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        return f'{full_name} Thank you for becoming an official member of the Pokédex!'
+    else:
+        return render_template('signup.html', form=form)
 
 @app.route('/search', methods=['GET', 'POST'])
 def pokemon_search():
@@ -27,16 +34,7 @@ def pokemon_search():
             url = f'https://pokeapi.co/api/v2/pokemon/{data}'
             response = requests.get(url)
             more_data = response.json()
-            get_poke = get_pokemon_data(more_data)
-            return render_template('search.html', data=get_poke)
-        except: 
-            return render_template('search.html', form=form )
-    else:
-         return render_template('search.html', form=form)
-        
-
-def get_pokemon_data(data):
-        pokemon_dict = {
+            pokemon_dict = {
                 'name': data['forms'][0]['name'],
                 'ability': data['abilities'][0]['ability']['name'],
                 'base_experience': data['base_experience'],
@@ -45,6 +43,10 @@ def get_pokemon_data(data):
                 'defense_stat': data['stats'][2]['base_stat'],
                 'sprite': data['sprites']['front_shiny']
             }
-        return pokemon_dict
+            return render_template('search.html', data=pokemon_dict, form=form)
+        except: 
+            return render_template('search.html', form=form)
+    else:
+        return render_template('search.html', form=form)
 
      

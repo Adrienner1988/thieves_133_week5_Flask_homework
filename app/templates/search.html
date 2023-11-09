@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 
-{%block styles %} 
-  <link rel="stylesheet" href="../static/styles/search.css"> 
+{%block styles %}
+<link rel="stylesheet" href="../static/styles/search.css">
 {% endblock %}
 
 {% block title %}
-  Pokémon Search 
+Pokémon Search
 {% endblock%}
 
 {% block content %}
-  {% include './includes/nav.html' %}
+{% include './includes/nav.html' %}
 <form method='POST'>
-  {{ form.hidden_tag() }}
   <div class="mb-3">
     {{ form.search.label }}
     {{ form.search(class="form-control", id="search") }}
   </div>
-  {{ form.search_btn(class="btn btn-primary") }}
+    {{ form.search_btn(class="btn btn-primary") }}
 </form>
+
 {% if data %}
 
 <table class="table table-striped">
@@ -32,17 +32,15 @@
     </tr>
   </thead>
   <tbody>
-    
     <tr>
       <td>{{ data['name'] }}</td>
       <td>{{ data['ability'] }}</td>
-      <td>{{ data['attack_stat'] }}</td> 
+      <td>{{ data['attack_stat'] }}</td>
       <td>{{ data['hp_stat'] }}</td>
       <td>{{ data['defense_stat'] }}</td>
       <td><img src="{{ data['sprite'] }}" alt="shiny_sprite"></td>
     </tr>
-
   </tbody>
 </table>
-{% endif%}
+{% endif %}
 {% endblock %}
