@@ -17,11 +17,11 @@ def login():
     else:
         return render_template('login.html', form=form)
     
-@app.route('.singup', methods=['GET', ['POST']])
+@app.route('/singup', methods=['GET', ['POST']])
 def signUp():
     form = SignUpForm()
     if request.method == 'POST' and form.validate_on_submit():
-        return f'{full_name} Thank you for becoming an official member of the Pokédex!'
+        return f'Thank you for becoming an official member of the Pokédex!'
     else:
         return render_template('signup.html', form=form)
 

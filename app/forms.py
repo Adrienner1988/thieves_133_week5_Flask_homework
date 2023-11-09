@@ -17,3 +17,5 @@ class SignUp(FlaskForm):
     password = PasswordField('Password: ', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password: ', validators=[DataRequired(), EqualTo('password')])
     submit_btn = SubmitField('Login')
+
+  
