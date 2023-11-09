@@ -10,16 +10,19 @@ Pokémon Search
 
 {% block content %}
 {% include './includes/nav.html' %}
-<form method='POST'>
+<form method='POST' class="w-25 mx-auto my-auto shadow p-3 mb-5 mt-5 bg-body-tertiary rounded">
+  {{ form.hidden_tag() }}
   <div class="mb-3">
     {{ form.search.label }}
+    
+    <label for="search" class="form-label"></label>
     {{ form.search(class="form-control", id="search") }}
+    
   </div>
     {{ form.search_btn(class="btn btn-primary") }}
 </form>
 
-{% if data %}
-
+{% if pdata %}
 <table class="table table-striped">
   <thead>
     <tr>
@@ -33,12 +36,12 @@ Pokémon Search
   </thead>
   <tbody>
     <tr>
-      <td>{{ data['name'] }}</td>
-      <td>{{ data['ability'] }}</td>
-      <td>{{ data['attack_stat'] }}</td>
-      <td>{{ data['hp_stat'] }}</td>
-      <td>{{ data['defense_stat'] }}</td>
-      <td><img src="{{ data['sprite'] }}" alt="shiny_sprite"></td>
+      <td>{{ pdata['name'] }}</td>
+      <td>{{ pdata['ability'] }}</td>
+      <td>{{ pdata['attack_stat'] }}</td>
+      <td>{{ pdata['hp_stat'] }}</td>
+      <td>{{ pdata['defense_stat'] }}</td>
+      <td><img src="{{ pdata['sprite'] }}" alt="shiny_sprite"></td>
     </tr>
   </tbody>
 </table>

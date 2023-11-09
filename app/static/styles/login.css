@@ -1,0 +1,44 @@
+* {
+    font-family: 'Abel', sans-serif;
+    font-family: 'Gabarito', sans-serif;
+}
+
+body {
+    background: #b92b27;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #1565C0, #b92b27);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #1565C0, #b92b27);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    margin-top: 30px;
+}
+
+h1 {
+    color: whitesmoke;
+}
+
+.email-input:focus,
+.password-input:focus{
+    border: 1px solid yellow;
+    box-shadow:none;
+}
+
+.sub-btn {
+    background-color: #b92b27;
+    color: whitesmoke;
+    border: 2px solid yellow;
+    transition: .3s;
+}
+
+.sub-btn:hover{
+    transform: scale(1.0);
+    border: 2px solid #b92b27;
+}
