@@ -5,7 +5,6 @@ from app.forms import LoginForm, SearchForm
 
 
 @app.route('/')
-@app.route('/home')
 def hello_trainers():
     return render_template('home.html')
 
@@ -23,8 +22,7 @@ def login():
 def pokemon_search():
     form = SearchForm()
     if request.method == 'POST':
-        data = request.form.get('data').lower()
-        print(data)
+        data = request.form.get('data')
         try:
             url = f'https://pokeapi.co/api/v2/pokemon/{data}'
             response = requests.get(url)
@@ -32,7 +30,7 @@ def pokemon_search():
             get_poke = get_pokemon_data(more_data)
             return render_template('search.html', data=get_poke)
         except: 
-            return render_template('search.html', form=form)
+            return render_template('search.html', form=form )
     else:
          return render_template('search.html', form=form)
         

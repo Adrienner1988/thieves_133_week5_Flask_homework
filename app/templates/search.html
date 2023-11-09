@@ -11,11 +11,13 @@
 {% block content %}
   {% include './includes/nav.html' %}
 <form method='POST'>
+  {{ form.hidden_tag() }}
   <div class="mb-3">
-    <label for="search" class="form-label">Search Pokémon by Name or National Pokédex Number</label>
-    <input type="text" class="form-control" id="search" aria-describedby="search" name="data">
+
+    {{form.search.label}}
+    {{ form.search(class="form-control", id="search") }}
   </div>
-  <button type="submit" class="btn btn-primary">Search</button>
+  {{ form.search_btn(class="btn btn-primary") }}
 </form>
 {% if data %}
 
