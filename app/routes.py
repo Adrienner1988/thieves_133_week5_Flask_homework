@@ -22,7 +22,7 @@ def login():
 def pokemon_search():
     form = SearchForm()
     if request.method == 'POST':
-        data = request.form.get('data')
+        form = form.search.data
         try:
             url = f'https://pokeapi.co/api/v2/pokemon/{data}'
             response = requests.get(url)
