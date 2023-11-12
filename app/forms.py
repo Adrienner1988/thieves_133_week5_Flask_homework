@@ -8,7 +8,7 @@ class LoginForm(FlaskForm):
     submit_btn = SubmitField('Login')
 
 class SearchForm(FlaskForm):
-    search = StringField('Search Pokémon by Name or National Pokédex Number:', validators=[DataRequired()])
+    search = StringField('Enter Pokémon Name or National Pokédex Number:', validators=[DataRequired()])
     search_btn = SubmitField('Search')
 
 class SignUpForm(FlaskForm):

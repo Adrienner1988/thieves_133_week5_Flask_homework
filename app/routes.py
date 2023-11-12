@@ -22,7 +22,7 @@ def login():
         queried_user = User.query.filter(User.email == email).first()
         if queried_user and check_password_hash(queried_user.password, password):
             login_user(queried_user)
-            flash(f'Hello, {queried_user.full_name} you have successfully logged in!', 'success')
+            flash(f'Hello, {queried_user.full_name} you have successfully logged in!', 'primary')
             return redirect(url_for('home'))
         else:
             return 'Invalid email or password'
@@ -34,7 +34,7 @@ def login():
 @app.route('/logout')
 @login_required
 def logout():
-    flash(f'You have been successfully logged out!','alert') 
+    flash(f'You have been successfully logged out!','danger') 
     logout_user()
     return redirect(url_for('login'))
 
@@ -59,7 +59,7 @@ def signup():
     else:
         return render_template('signup.html', form=form)
     
-# search pokemom/pull data
+# search pokemon/pull data
 @app.route('/search', methods=['GET', 'POST'])
 def pokemon_search():
     print('enroute')
