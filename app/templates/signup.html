@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block styles %}
-<link rel="stylesheet" href="../static/styles/signup.styles">
+<link rel="stylesheet" href="../static/styles/signup.css">
 {% endblock %}
 
 {% block title %}
@@ -10,27 +10,31 @@ Sign Up
 
 {% block content %}
 {% include './includes/nav.html' %}
+
 <h1 class="text-center">Sign Up</h1>
-<form method="POST" class="w-25 mx-auto my-auto shadow p-3 mb-5 mt-5 bg-body-tertiary rounded">
+<form method="POST" class="w-25 mx-auto shadow p-3 mb-5 mt-5 bg-body-tertiary rounded">
     {{ form.hidden_tag() }}
 
     <div class="mb-3">
+        <label for="full_name" class="form-label">Full Name</label>
         {{ form.full_name(class="form-control cus-input", id="full_name") }}
     </div>
 
     <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
         {{ form.email(class="form-control cus-input", id="email") }}
     </div>
 
     <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
         {{ form.password(class="form-control cus-input", id="password") }}
     </div>
 
-    <div class="mb-3 form-check">
+    <div class="mb-3">
+        <label for="cpasword" class="form-label">Confirm Password</label>
         {{ form.confirm_password(class="form-control cus-input", id="cpassword") }}
     </div>
 
-    {{ form.submit_btn(class="btn btn-primary submit-btn" ) }} 
-   
+        {{ form.submit_btn(class="sub-btn" ) }}
 </form>
-        {% endblock %}
+{% endblock %}

@@ -1,25 +1,37 @@
-  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Pokédex</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/search">Search</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/signup">Sign Up</a>
-          </li>
-          </li>
-        </ul>
-      </div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="">Pokédex</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          {{ current_user.full_name }}
+        </li>
+        {% endif %}
+        
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('pokemon_search') }}">Search</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('signup')}}">Sign Up</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
+        </li>
+        
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>

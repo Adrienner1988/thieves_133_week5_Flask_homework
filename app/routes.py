@@ -1,32 +1,65 @@
-from flask import request, render_template
+from flask import request, render_template, redirect, url_for, flash
 import requests
 from app import app
 from app.forms import LoginForm, SearchForm, SignUpForm
+from app.models import User, db
+from werkzeug.security import check_password_hash
+from flask_login import login_user, logout_user, current_user, login_required
 
-
+#home
 @app.route('/')
-def hello_trainers():
+def home():
     return render_template('home.html')
 
-
+#log in
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if request.method == 'POST' and form.validate_on_submit():
-        return 'You have successfully logged in!'
+        email = form.email.data
+        password = form.password.data
+
+        queried_user = User.query.filter(User.email == email).first()
+        if queried_user and check_password_hash(queried_user.password, password):
+            login_user(queried_user)
+            flash(f'Hello, {queried_user.full_name} you have successfully logged in!', 'success')
+            return redirect(url_for('home'))
+        else:
+            return 'Invalid email or password'
     else:
         return render_template('login.html', form=form)
     
-    
+
+#log out
+@app.route('/logout')
+@login_required
+def logout():
+    flash(f'You have been successfully logged out!','alert') 
+    logout_user()
+    return redirect(url_for('login'))
+
+#sign up  
 @app.route('/signup', methods=['GET', 'POST'])
-def join():
+def signup():
     form = SignUpForm()
     if request.method == 'POST' and form.validate_on_submit():
-        return f'Thank you for becoming an official member of the Pokédex!'
+        full_name = form.full_name.data
+        email = form.email.data
+        password = form.password.data
+
+        #Create an instance for user class
+        user = User(full_name, email, password)
+
+        # add user to database
+        db.session.add(user)
+        db.session.commit()
+
+        flash(f'Thank you {full_name} for becoming a member of the Pokédex!', 'warning')
+        return redirect(url_for('home'))
     else:
         return render_template('signup.html', form=form)
-
-
+    
+# search pokemom/pull data
 @app.route('/search', methods=['GET', 'POST'])
 def pokemon_search():
     print('enroute')

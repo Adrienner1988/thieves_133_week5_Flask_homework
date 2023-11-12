@@ -27,18 +27,21 @@ h1 {
 
 .email-input:focus,
 .password-input:focus{
-    border: 1px solid yellow;
-    box-shadow:none;
+    border: none;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
 
 .sub-btn {
     background-color: #b92b27;
     color: whitesmoke;
-    border: 2px solid yellow;
-    transition: .3s;
+    transition: .8s;
+    border: none;
+    border-radius: 50px;
+    padding: 10px;
 }
 
 .sub-btn:hover{
-    transform: scale(1.0);
-    border: 2px solid #b92b27;
+    transform: scale(1.2);
+    color: #efc245; 
+    background-color: #3434bc;
 }

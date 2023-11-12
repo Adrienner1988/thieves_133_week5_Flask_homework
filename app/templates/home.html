@@ -1,10 +1,23 @@
 {% extends 'base.html' %}
 
+{% block styles %}
+<link rel="stylesheet" href="../static/styles/home.css">
+{% endblock%}
+
 {% block title %}
-    Home Page
+Home Page
 {% endblock %}
 
 {%block content %}
 {% include './includes/nav.html' %}
-    <h1 class="text-center">Welcome to the Pokédex Trainers!</h1>
+
+<h1 class="text-center">Welcome to the Pokédex Trainers!</h1>
+
+<div class="poke_box">
+    <div class="pokeball">
+        <div class="pokeball__button">
+
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -2,3 +2,41 @@
     font-family: 'Abel', sans-serif;
     font-family: 'Gabarito', sans-serif;
 }
+
+body {
+    background-image: url('https://wallpapers.com/images/high/pokeball-1440-x-900-background-lho8er79eqpo6beh.webp');
+    background-size: cover;  
+}
+
+h1 {
+    background-color: black;
+    color: whitesmoke;
+}
+
+.cus-input {
+    border: 1px solid #b92b27;
+    
+}
+
+.cus-input:focus{
+    border: 1px solid #000;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+
+.sub-btn {
+    display: block;
+    margin: 0, auto;
+    background-color: #b92b27;
+    color: whitesmoke;
+    border: 1px solid #000;
+    transition: .8s;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.sub-btn:hover{
+    transform: scale(1.0);
+    background-color: #000;
+    border: 1px solid #b92b27;
+}
+
+
