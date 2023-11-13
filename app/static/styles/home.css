@@ -10,7 +10,15 @@ body {
 }
 
 h1 {
-    margin-top: 50px;
+    margin-top: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-weight: 600;
+}
+
+.sep {
+    position: relative;
+    padding-bottom: 15%;
 }
 
 .poke_box {
@@ -32,10 +40,6 @@ h1 {
     overflow: hidden;
     box-shadow: inset -10px 10px 0 10px #ccc;
     animation: shake 1.25s cubic-bezier(.36, .07, .19, .97) infinite;
-    animation-play-state: paused;
-}
-
-.pokeball {
     animation-play-state: running;
 }
 
@@ -64,7 +68,6 @@ h1 {
         transform: translate(0, 0) rotate(0);
     }
 }
-
 
 .pokeball::before,
 .pokeball::after {

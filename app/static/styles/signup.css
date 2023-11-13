@@ -6,6 +6,7 @@
 body {
     background-image: url('https://wallpapers.com/images/high/pokeball-1440-x-900-background-lho8er79eqpo6beh.webp');
     background-size: cover;  
+    height: 100vh;
 }
 
 h1 {
@@ -25,7 +26,7 @@ h1 {
 
 .sub-btn {
     display: block;
-    margin: 0, auto;
+    margin: 0 auto;
     background-color: #b92b27;
     color: whitesmoke;
     border: 1px solid #000;
