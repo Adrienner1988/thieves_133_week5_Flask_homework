@@ -7,9 +7,6 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password: ', validators=[DataRequired()])
     submit_btn = SubmitField('Login')
 
-class SearchForm(FlaskForm):
-    search = StringField('Enter Pokémon Name or National Pokédex Number:', validators=[DataRequired()])
-    search_btn = SubmitField('Search')
 
 class SignUpForm(FlaskForm):
     full_name = StringField('Full Name: ', validators=[DataRequired()])
@@ -17,6 +14,4 @@ class SignUpForm(FlaskForm):
     password = PasswordField('Password: ', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password: ', validators=[DataRequired(), EqualTo('password')])
     submit_btn = SubmitField('Register')
-
-
   

@@ -16,7 +16,7 @@ def login():
         queried_user = User.query.filter(User.email == email).first()
         if queried_user and check_password_hash(queried_user.password, password):
             login_user(queried_user)
-            flash(f'Hello, {queried_user.full_name} you have successfully logged in!', 'primary')
+            flash(f'Welcome, {queried_user.full_name} you are logged in!', 'primary')
             return redirect(url_for('main.home'))
         else:
             return 'Invalid email or password'

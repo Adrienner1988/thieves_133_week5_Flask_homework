@@ -45,3 +45,7 @@ h1 {
     color: #efc245; 
     background-color: #3434bc;
 }
+
+a {
+    margin-left: 5px;
+}

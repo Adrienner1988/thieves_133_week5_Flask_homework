@@ -2,6 +2,7 @@ from app.blueprints.main import main
 from flask import render_template, request
 from flask_login import login_required 
 import requests
+from .forms import SearchForm
 
 
 #home
