@@ -17,3 +17,5 @@ class User(db.Model, UserMixin):
         self.full_name = full_name
         self.email = email
         self.password = generate_password_hash(password)
+
+

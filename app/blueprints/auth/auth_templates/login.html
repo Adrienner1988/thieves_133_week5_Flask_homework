@@ -24,5 +24,6 @@ Login
         {{ form.password(class="form-control password-input", id="password") }}
     </div>
     {{ form.submit_btn(class="sub-btn") }}
+    <a href="{{ url_for('auth.signup') }}">Don't have an account? Sign up!</a>
 </form>
 {% endblock %}

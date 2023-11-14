@@ -43,5 +43,25 @@ Pokémon Search
     </tr>
   </tbody>
 </table>
+
+
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+<div class="card">
+  <img src="{{ pdata['sprite'] }}" alt="shiny_sprite" style="width:100%">
+
+  <div class="container">
+    <h4><b>{{ pdata['name'] }}</b></h4>
+    <p>{{ pdata['ability'] }}</p>
+    <p>{{ pdata['attack_stat'] }}</p>
+    <p>{{ pdata['hp_stat'] }}</p>
+    <p>{{ pdata['defense_stat'] }}</p>
+  </div>
+</div>
+</div>
+</div>
+</div>
 {% endif %}
 {% endblock %}
