@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="../static/styles/create_team.css">
+{% endblock %}
+
+{% block title %}
+Sign Up
+{% endblock%}
+
+{% block content %}
+{% include './includes/nav.html' %}
+
+<h1 class="text-center">Create a Team</h1>
+<form method="POST" class="w-25 mx-auto shadow p-3 mb-5 mt-5 bg-body-tertiary rounded">
+    {{ form.hidden_tag() }}
+
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        {{ form.name(class="form-control cus-input", id="name") }}
+    </div>
+
+    <div class="mb-3">
+        <label for="ability" class="form-label">Ability</label>
+        {{ form.ability(class="form-control cus-input", id="ability") }}
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="form-label">Attack Stat</label>
+        {{ form.attack_stat(class="form-control cus-input", id="attack_stat") }}
+    </div>
+
+    <div class="mb-3">
+        <label for="hp_stat" class="form-label">HP Stat</label>
+        {{ form.hp_stat(class="form-control cus-input", id="hp_stat") }}
+    </div>
+
+    <div class="mb-3">
+        <label for="defense_stat" class="form-label">Defense Stat</label>
+        {{ form.defense_stat(class="form-control cus-input", id="defense_stat") }}
+    </div>
+
+    <div class="mb-3">
+        <label for="sprite" class="form-label">Sprite</label>
+        {{ form.sprite(class="form-control cus-input", id="sprite") }}
+    </div>
+        {{ form.submit_btn(class="sub-btn") }}
+</form>
+{% endblock %}

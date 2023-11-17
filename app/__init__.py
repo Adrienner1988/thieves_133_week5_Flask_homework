@@ -3,6 +3,7 @@ from config import ConFig
 from flask_login import LoginManager
 from app.models import db, User
 from flask_migrate import Migrate
+from flask_moment import Moment
 
 app = Flask(__name__)
 app.config.from_object(ConFig)
@@ -12,6 +13,7 @@ login_manager.init_app(app)
 
 db.init_app(app)
 migrate = Migrate(app, db)
+moment = Moment(app)
 
 # login manager settings
 login_manager.login_view = 'auth.login'
@@ -21,12 +23,12 @@ login_manager.login_message_category = 'warning'
 # importing blueprints
 from app.blueprints.auth import auth
 from app.blueprints.main import main
-
+from app.blueprints.team import team
 
 # registering blueprints
 app.register_blueprint(auth)
 app.register_blueprint(main)
-
+app.register_blueprint(team)
 
 
 @login_manager.user_loader

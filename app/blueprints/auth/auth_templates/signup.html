@@ -11,10 +11,10 @@ Sign Up
 {% block content %}
 {% include './includes/nav.html' %}
 
-<h1 class="text-center">Sign Up</h1>
+<div class="form">
 <form method="POST" class="w-25 mx-auto shadow p-3 mb-5 mt-5 bg-body-tertiary rounded">
     {{ form.hidden_tag() }}
-
+    <h1 class="text-center">Sign Up</h1>
     <div class="mb-3">
         <label for="full_name" class="form-label">Full Name</label>
         {{ form.full_name(class="form-control cus-input", id="full_name") }}
@@ -37,4 +37,5 @@ Sign Up
 
         {{ form.submit_btn(class="sub-btn" ) }}
 </form>
+</div>
 {% endblock %}

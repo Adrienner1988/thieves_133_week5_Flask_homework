@@ -5,8 +5,11 @@ import requests
 from .forms import SearchForm
 
 
+
 #home
 @main.route('/')
+@main.route('/home')
+@login_required
 def home():
     return render_template('home.html')
 
@@ -15,12 +18,10 @@ def home():
 @main.route('/search', methods=['GET', 'POST'])
 @login_required
 def pokemon_search():
-    print('enroute')
     form = SearchForm()
     if request.method == 'POST' and form.validate_on_submit():
         print('POST')
         pdata = form.search.data.lower()
-        print(pdata)
         try:
             url = f'https://pokeapi.co/api/v2/pokemon/{pdata}'
             response = requests.get(url)

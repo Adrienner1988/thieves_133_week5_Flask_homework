@@ -9,9 +9,13 @@ body {
     height: 100vh;
 }
 
+.form {
+    padding-bottom: 5px;
+}
+
 h1 {
-    background-color: black;
-    color: whitesmoke;
+    color: #b92b27;
+    padding-bottom: 5px;
 }
 
 .cus-input {

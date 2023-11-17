@@ -45,7 +45,9 @@ body {
   border: 3px dotted #fbb113;
 }
 
-
+.flip-card {
+  padding-bottom: 20px;
+}
 
 .container {
   margin: auto;
