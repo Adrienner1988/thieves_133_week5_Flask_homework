@@ -18,6 +18,34 @@ body {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.catch-btn {
+  font-weight: 400;
+  font-size: 14px;
+  color: #660d04;
+  background: linear-gradient(90deg, #ec6110 0%, #efc34a 100%);
+  padding: 10px 10px;
+  border: 3px solid #660d04;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+  border-radius: 5px;
+  transition: 1000ms;
+  transform: translateY(0);
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.catch-btn:hover {
+  font-weight: 500;
+  transition: 1000ms;
+  padding: 10px 20px;
+  transform: translateY(-3px);
+  background: linear-gradient(90deg, #ec6110 0%, #efc34a 100%);
+  color: #ffffff;
+  border: 3px dotted #fbb113;
+}
+
+
 .search-btn {
   font-weight: 400;
   font-size: 14px;

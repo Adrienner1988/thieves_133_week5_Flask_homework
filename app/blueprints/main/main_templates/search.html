@@ -10,8 +10,9 @@ Pokémon Search
 
 {% block content %}
 {% include './includes/nav.html' %}
+
 <form method='POST' class="w-25 mx-auto  shadow p-3 my-5 bg-body-tertiary rounded border border-warning text-center fs-4">
-  {{ form.hidden_tag() }}
+    {{ form.hidden_tag() }}
   <div class="mb-3">
     {{ form.search.label() }}
     <label for="search" class="form" class="form-label"></label>
@@ -21,28 +22,7 @@ Pokémon Search
 </form>
 
 {% if pdata %}
-<!-- <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Ability</th>
-      <th scope="col">Attack Stat</th>
-      <th scope="col">HP Stat</th>
-      <th scope="col">Defense Stat</th>
-      <th scope="col">Sprite</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{ pdata['name'] }}</td>
-      <td>{{ pdata['ability'] }}</td>
-      <td>{{ pdata['attack_stat'] }}</td>
-      <td>{{ pdata['hp_stat'] }}</td>
-      <td>{{ pdata['defense_stat'] }}</td>
-      <td><img src="{{ pdata['sprite'] }}" alt="shiny_sprite"></td>
-    </tr>
-  </tbody>
-</table> -->
+
 
 <div class="flip-card">
   <div class="container">
@@ -61,8 +41,9 @@ Pokémon Search
 
     <h3><b>Defense Stat</b></h3>
     <h4>{{ pdata['defense_stat'] }}</h4>
+
+    <a href="{{ url_for('poke.catch', poke_id=poke.id)}}" class="btn btn-primary">Catch</a>
   </div>
 </div>
-
 {% endif %}
 {% endblock %}
