@@ -7,22 +7,22 @@ from app.models import Poke, User, db, user_poke
 
 
 # team 
-@teams.route('/team', methods=['POST'])
+@teams.route('/team', methods=['GET'])
 @login_required
 def poke_team():
-   player = User.query.get(current_user.id)
-   if player:
-       all_players = player.caught.all()
-       return render_template('team.html', all_players=all_players)
-#    else:
-#     return 'Player not found.'
-
+   user = User.query.get(current_user.id)
+   if user:
+       all_users = user.catch.all()
+       return render_template('team.html', all_users=all_users)
+   else:
+    return "User not found"
 
 
 # releasing a Pokemon
-@teams.route('/release/<int:poke_id>', methods=['POST'])
+@teams.route('/release/<int:poke_id>')
 @login_required
 def release_poke(poke_id):
+    print(poke_id)
     poke = Poke.query.get(poke_id)
     
     if poke in current_user.id == user_poke.id:

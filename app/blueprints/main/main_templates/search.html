@@ -18,31 +18,28 @@ Pokémon Search
     <label for="search" class="form" class="form-label"></label>
     {{ form.search(class="form-control", id="search") }}
   </div>
-    {{ form.search_btn(class="search-btn") }}
+    {{ form.search_btn(class="search-btn") }}   
 </form>
 
-{% if pdata %}
-
-
+{% if pokemon %}
 <div class="flip-card">
   <div class="container">
-    <h1><b>{{ pdata['name'] }}</b></h1>
+    <h1><b>{{ pokemon['name'] }}</b></h1>
 
-    <img src="{{ pdata['sprite'] }}" alt="shiny_sprite">
+    <img src="{{ pokemon['sprite'] }}" alt="shiny_sprite">
 
     <h3><b>Ability</b></h3>
-    <h4>{{ pdata['ability'] }}</h4>
+    <h4>{{ pokemon['ability'] }}</h4>
 
     <h3><b>Attack Stat</b></h3>
-    <h4>{{ pdata['attack_stat'] }}</h4>
+    <h4>{{ pokemon['attack_stat'] }}</h4>
 
     <h3><b>HP Stat</b></h3>
-    <h4>{{ pdata['hp_stat'] }}</h4>
+    <h4>{{ pokemon['hp_stat'] }}</h4>
 
     <h3><b>Defense Stat</b></h3>
-    <h4>{{ pdata['defense_stat'] }}</h4>
+    <h4>{{ pokemon['defense_stat'] }}</h4>
 
-    <a href="{{ url_for('poke.catch', poke_id=poke.id)}}" class="btn btn-primary">Catch</a>
   </div>
 </div>
 {% endif %}

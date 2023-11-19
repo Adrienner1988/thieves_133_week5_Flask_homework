@@ -39,7 +39,8 @@ class Poke(db.Model):
     defense_stat = db.Column(db.Integer, nullable=False)
     sprite = db.Column(db.String, nullable=False)
 
-    def __init__(self, name, ability, attack_stat, hp_stat, defense_stat, sprite, poke_added):
+    def __init__(self, id, name, ability, attack_stat, hp_stat, defense_stat, sprite, poke_added):
+       self.id = id
        self.name = name
        self.ability = ability
        self.attack_stat = attack_stat
