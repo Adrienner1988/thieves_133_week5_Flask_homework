@@ -39,8 +39,9 @@ Pokémon Search
 
     <h3><b>Defense Stat</b></h3>
     <h4>{{ pokemon['defense_stat'] }}</h4>
-
+<a href="{{ url_for('main.catch', poke_id=pokemon.id) }}" class="catch-btn">Catch this Pokémon!</a>
   </div>
 </div>
+
 {% endif %}
 {% endblock %}

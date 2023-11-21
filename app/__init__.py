@@ -23,12 +23,12 @@ login_manager.login_message_category = 'warning'
 # importing blueprints
 from app.blueprints.auth import auth
 from app.blueprints.main import main
-from app.blueprints.teams import teams
+
 
 # registering blueprints
 app.register_blueprint(auth)
 app.register_blueprint(main)
-app.register_blueprint(teams)
+
 
 
 @login_manager.user_loader
