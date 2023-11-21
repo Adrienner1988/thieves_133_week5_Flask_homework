@@ -71,8 +71,7 @@ def pokemon_search():
 #     db.session.commit()
 #     return redirect(url_for('main.pokemon_search'))
 
-
-       
+ 
 @main.route('/catch/<int:poke_id>')
 def catch(poke_id):
     poke = Poke.query.get(poke_id)
@@ -82,10 +81,9 @@ def catch(poke_id):
     
     if len(current_user.Pokemon) >= 6:
         flash(f'Your team is full, release another Pokemon to catch this one.')
+        return redirect(url_for('main.pokemon_search'))
 
-    else:
-        flash(f'{poke_id} had been added to your team!', 'danger')
-        return render_template('search.html',)
+    flash(f'{poke_id} had been added to your team!', 'danger')
     print(poke)
     current_user.Pokemon.append(poke)
     db.session.commit()
