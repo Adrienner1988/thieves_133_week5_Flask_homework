@@ -12,20 +12,23 @@ Pokémon Team
 {% include './includes/nav.html' %}
 <h1>Your Pokémon Team</h1>
 
-{% if all_players %}
-  {% for player in all_players %}
+{% if my_team %}
+  {% for poke in my_team %}
 
   <div class="flip-card">
     <div class="container">
-      <h1><b>{{ poke.name }}</b></h1>
+      <h1><b>"{{ poke.name }}"</b></h1>
   
-      <img src="{{ poke.img_url }}" alt="shiny_sprite">
+      <img src="{{ poke.sprite }}" alt="shiny_sprite">
   
+      <h3><b>Pokédex Number</b></h3>
+      <h4>{{ poke.id }}</h4>
+
       <h3><b>Ability</b></h3>
       <h4>{{ poke.ability }}</h4>
   
       <h3><b>Attack Stat</b></h3>
-      <h4>{{ poke.attack_stat }}</h4>
+      <h4>{{ poke.attack_stat}}</h4>
   
       <h3><b>HP Stat</b></h3>
       <h4>{{ poke.hp_stat }}</h4>
@@ -33,12 +36,13 @@ Pokémon Team
       <h3><b>Defense Stat</b></h3>
       <h4>{{ poke.defense_stat }}</h4>
 
-      {% if current_user.id == user_poke.id %}
-        <a href="{{ url_for('poke.catch', poke_id=poke.id)}}" class="btn btn-primary">Catch</a>
-        <a href="{{ url_for('poke.release', poke_id=poke.id)}}" class="btn btn-primary">Release</a>
-      {% endif %}
+  
+      <a href="{{ url_for('main.release', poke_id=poke.id ) }}" class="release-btn primary">Release</a>
+    
     </div>
   </div>
-{% endfor %}
-{% endif %}  
+    
+ 
+  {% endfor %}
+  {% endif %}  
 {% endblock %}

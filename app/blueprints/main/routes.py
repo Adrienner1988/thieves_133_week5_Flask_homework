@@ -3,7 +3,7 @@ from flask import render_template, request, flash, redirect, url_for, render_tem
 from flask_login import login_required, current_user, login_required
 import requests
 from .forms import SearchForm
-from app.models import db, Poke, User
+from app.models import db, Poke, User, user_poke
 
 
 
@@ -21,15 +21,19 @@ def home():
 def pokemon_search():
     form = SearchForm()
     if request.method == 'POST' and form.validate_on_submit():
+        #taking in information from form to search
         pdata = form.search.data
         pokemon = ''
+        #checking to see if this information is in the database
         if pdata.isdigit():
             pokemon = Poke.query.filter(Poke.id==int(pdata)).first()
         else:
             pokemon = Poke.query.filter(Poke.name==pdata.lower()).first()
         print(pokemon, 'line 26')
+        #if information is in the data base add to the database ans return to the user 
         if pokemon:
             return render_template('search.html', pokemon=pokemon, form=form)
+        #else create the pokemon and add the the database
         else:
             print(pdata)
             url = f'https://pokeapi.co/api/v2/pokemon/{pdata.lower()}'
@@ -55,13 +59,16 @@ def pokemon_search():
                     defense_stat=pokemon_dict['defense_stat'],
                     sprite=pokemon_dict['sprite'],
                 )
+            #add then commit the pokemon to the database
             db.session.add(pokemon)
             db.session.commit()
+            #flash message and return back to the search page
             flash(f'Would you like to add {pokemon.name} to your team? Hit the catch button below!', 'warning')
             return render_template('search.html', form=form, pokemon=pokemon)
       
     return render_template('search.html', form=form)
     
+
 #catching      
 # @main.route('/catch/<int:poke_id>')
 # def catch(poke_id):
@@ -73,41 +80,51 @@ def pokemon_search():
 
  
 @main.route('/catch/<int:poke_id>')
+@login_required
 def catch(poke_id):
     poke = Poke.query.get(poke_id)
+    # seeing if user has the pokemon in their team already
     if poke in current_user.Pokemon:
-        flash(f'{poke_id} is already in your team, pick another Pokemon.', 'warning')
+        flash(f'{poke_id} is already in your team, pick another Pokémon.', 'warning')
         return redirect(url_for('main.pokemon_search'))
     
+    # seeing if the team has 6 pokemon
     if len(current_user.Pokemon) >= 6:
-        flash(f'Your team is full, release another Pokemon to catch this one.')
+        flash(f'Your team is full, release another Pokémon to catch this one.', 'danger')
         return redirect(url_for('main.pokemon_search'))
-
-    flash(f'{poke_id} had been added to your team!', 'danger')
-    print(poke)
+    
+    #if the if checks pass adding the pokemon to team
     current_user.Pokemon.append(poke)
     db.session.commit()
+    flash(f'{poke_id} has been added to your team!', 'success')
+    print(poke)
     return redirect(url_for('main.pokemon_search'))
               
                
+# releasing a Pokemon
+@main.route('/release/<int:poke_id>')
+@login_required
+def release(poke_id):
+    print(poke_id)
+    #getting the poke from the database
+    poke = Poke.query.get(poke_id)
+    if poke and current_user.Pokemon:
+    #deleting from the database
+        db.session.delete(poke)
+        db.session.commit()
+        flash(f'{poke_id} has been released from your team!', 'success')
+        return redirect(url_for('main.team'))
+
+        
+#Seeing the team
+#querying objects from the database from the Poke table, creating an object (my_team),then passing the pokemon, looping and showing the pokemon on the front end
+@main.route('/team')
+@login_required
+def team():
+    my_team = Poke.query.all()
+    return render_template('team.html', my_team=my_team)
 
 
-        
-    # # releasing a Pokemon
-# @teams.route('/release/<int:poke_id>')
-# @login_required
-# def release_poke(poke_id):
-#     print(poke_id)
-#     poke = Poke.query.get(poke_id)
-    
-#     if poke in current_user.id == user_poke.id:
-#         db.session.delete(poke)
-#         db.session.commit()
-#     else:
-#         flash(f'{poke_id} has been removed from your team.')
-#         return  redirect(url_for('team.html'))
-        
-        
 
 
    

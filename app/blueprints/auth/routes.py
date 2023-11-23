@@ -27,7 +27,7 @@ def login():
 @auth.route('/logout')
 @login_required
 def logout():
-    flash(f'You have been successfully logged out!','danger') 
+    flash(f'You have been successfully logged out!','primary') 
     logout_user()
     return redirect(url_for('auth.login'))
 
