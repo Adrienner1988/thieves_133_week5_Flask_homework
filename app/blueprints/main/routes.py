@@ -30,7 +30,7 @@ def pokemon_search():
         else:
             pokemon = Poke.query.filter(Poke.name==pdata.lower()).first()
         print(pokemon, 'line 26')
-        #if information is in the data base add to the database ans return to the user 
+        #if information is in the data base add to the database and return to the user 
         if pokemon:
             return render_template('search.html', pokemon=pokemon, form=form)
         #else create the pokemon and add the the database
@@ -83,6 +83,7 @@ def pokemon_search():
 @login_required
 def catch(poke_id):
     poke = Poke.query.get(poke_id)
+    print(poke)
     # seeing if user has the pokemon in their team already
     if poke in current_user.Pokemon:
         flash(f'{poke_id} is already in your team, pick another Pokémon.', 'warning')
@@ -97,7 +98,6 @@ def catch(poke_id):
     current_user.Pokemon.append(poke)
     db.session.commit()
     flash(f'{poke_id} has been added to your team!', 'success')
-    print(poke)
     return redirect(url_for('main.pokemon_search'))
               
                
@@ -112,8 +112,9 @@ def release(poke_id):
     #deleting from the database
         db.session.delete(poke)
         db.session.commit()
-        flash(f'{poke_id} has been released from your team!', 'success')
-        return redirect(url_for('main.team'))
+    flash(f'{poke_id} has been released from your team!', 'success')
+    return redirect(url_for('main.team'))
+    
 
         
 #Seeing the team
