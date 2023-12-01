@@ -7,7 +7,7 @@ from app.models import db, Poke, User, user_poke
 
 
 
-#home
+# home
 @main.route('/')
 @main.route('/home')
 @login_required
@@ -90,13 +90,14 @@ def catch(poke_id):
         return redirect(url_for('main.pokemon_search'))
     
     # seeing if the team has 6 pokemon
-    if len(current_user.Pokemon) >= 6:
+    if len(current_user.Pokemon) >= 5:
         flash(f'Your team is full, release another Pokémon to catch this one.', 'danger')
         return redirect(url_for('main.pokemon_search'))
     
-    #if the if checks pass adding the pokemon to team
+    # if the if checks pass adding the pokemon to team
     current_user.Pokemon.append(poke)
     db.session.commit()
+    print(poke)
     flash(f'{poke_id} has been added to your team!', 'success')
     return redirect(url_for('main.pokemon_search'))
               
@@ -106,24 +107,53 @@ def catch(poke_id):
 @login_required
 def release(poke_id):
     print(poke_id)
-    #getting the poke from the database
+    # getting the poke from the database
     poke = Poke.query.get(poke_id)
     if poke and current_user.Pokemon:
-    #deleting from the database
+    # deleting from the database
         db.session.delete(poke)
         db.session.commit()
     flash(f'{poke_id} has been released from your team!', 'success')
     return redirect(url_for('main.team'))
     
-
         
-#Seeing the team
-#querying objects from the database from the Poke table, creating an object (my_team),then passing the pokemon, looping and showing the pokemon on the front end
+# Seeing the team
+# querying objects from the database from the Poke table, creating an object (my_team),then passing the pokemon, looping and showing the pokemon on the front end
 @main.route('/team')
 @login_required
 def team():
     my_team = Poke.query.all()
     return render_template('team.html', my_team=my_team)
+
+
+# trainers to battle
+@main.route('/trainers')
+@login_required
+def trainers():
+    pass
+
+
+# battle page
+@main.route('/battle')
+@login_required
+def battle():
+    pass
+
+
+# battle simulation
+@main.route()
+@login_required
+def battle():
+    pass
+
+
+# battle results
+@main.route('/results')
+@login_required
+def results():
+    pass
+
+
 
 
 
