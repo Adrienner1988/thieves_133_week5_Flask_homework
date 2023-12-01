@@ -78,7 +78,7 @@ def pokemon_search():
 #     db.session.commit()
 #     return redirect(url_for('main.pokemon_search'))
 
- 
+#catching a pokemon
 @main.route('/catch/<int:poke_id>')
 @login_required
 def catch(poke_id):
@@ -90,7 +90,7 @@ def catch(poke_id):
         return redirect(url_for('main.pokemon_search'))
     
     # seeing if the team has 6 pokemon
-    if len(current_user.Pokemon) >= 5:
+    if len(current_user.Pokemon) >= 6:
         flash(f'Your team is full, release another Pokémon to catch this one.', 'danger')
         return redirect(url_for('main.pokemon_search'))
     
@@ -133,15 +133,8 @@ def trainers():
     pass
 
 
-# battle page
+# battle simulation page
 @main.route('/battle')
-@login_required
-def battle():
-    pass
-
-
-# battle simulation
-@main.route()
 @login_required
 def battle():
     pass
