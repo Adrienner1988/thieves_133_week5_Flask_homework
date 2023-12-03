@@ -1,0 +1,74 @@
+* {
+    font-family: 'Abel', sans-serif;
+    font-family: 'Gabarito', sans-serif;
+  }
+  
+  body {
+    background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7e07b960-625d-499a-b194-6782be1b8e73/d8si3x3-85778c80-7591-4f61-b06c-209b4ab36923.jpg/v1/fill/w_1024,h_576,q_75,strp/froakie_background_by_mai1989_d8si3x3-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTc2IiwicGF0aCI6IlwvZlwvN2UwN2I5NjAtNjI1ZC00OTlhLWIxOTQtNjc4MmJlMWI4ZTczXC9kOHNpM3gzLTg1Nzc4YzgwLTc1OTEtNGY2MS1iMDZjLTIwOWI0YWIzNjkyMy5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.GifxaZpZTLfS8E0MB5L6DX69jsA99Z2fn0v7544-uRg');
+    background-size: cover;
+    height: 100vh;
+  }
+  
+  h3 {
+    color: #000;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.form-control {
+    border: 3px solid #000;
+  }
+  
+  .form-control:focus {
+    border: 3px solid #ec6110;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  .flip-card {
+    padding-bottom: 20px;
+    display: inline-flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    padding-left: 50px;
+  }
+  
+  .container {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #000;
+    border: 3px solid #000;
+    border-radius: 25px;
+    background: #757F9A;
+    background: -webkit-linear-gradient(to bottom, #D7DDE8, #757F9A);
+    background: linear-gradient(to bottom, #D7DDE8, #757F9A);
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    padding-bottom: 10px;
+  }
+
+  .attack-btn {
+  box-shadow: 3px 4px 0px 0px #1564ad;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:5px;
+	border:1px solid #337bc4;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:2px 2px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+  }
+
+  .attack-btn:hover {
+    background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+    background-color:#378de5;
+  }
+  .attack-btn:active {
+    position:relative;
+    top:1px;
+  }

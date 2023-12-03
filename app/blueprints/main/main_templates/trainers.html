@@ -1,16 +1,28 @@
 {% extends 'base.html' %}
 
 {% block styles %}
-<link rel="stylesheet" href="/app/static/styles/followers.css">
+<link rel="stylesheet" href="../static/styles/trainers.css">
 {% endblock%}
 
 {% block title %}
-Poké Battle
+Pokémon Trainers
 {% endblock %}
 
 {%block content %}
 {% include './includes/nav.html' %}
-
 <!-- find users to attack -->
-
+  {% for trainer in all_trainers %}
+  
+  <div class="flip-card">
+    <div class="container">
+        
+      <h3><b>{{ trainer.full_name }}</b></h3>
+   
+      <a href="{{ url_for('main.attack', user_id=trainer.id)}}" class="attack-btn">Attack!</a>
+      
+    </div>
+  </div>
+    
+  {% endfor %}
 {% endblock %}
+

@@ -21,19 +21,19 @@ def home():
 def pokemon_search():
     form = SearchForm()
     if request.method == 'POST' and form.validate_on_submit():
-        #taking in information from form to search
+        # taking in information from form to search
         pdata = form.search.data
-        pokemon = ''
-        #checking to see if this information is in the database
+    
+        # checking to see if this information is in the database
         if pdata.isdigit():
             pokemon = Poke.query.filter(Poke.id==int(pdata)).first()
         else:
             pokemon = Poke.query.filter(Poke.name==pdata.lower()).first()
         print(pokemon, 'line 26')
-        #if information is in the data base add to the database and return to the user 
+        # if information is in the data base add to the database and return to the user 
         if pokemon:
             return render_template('search.html', pokemon=pokemon, form=form)
-        #else create the pokemon and add the the database
+        # else create the pokemon and add the the database
         else:
             print(pdata)
             url = f'https://pokeapi.co/api/v2/pokemon/{pdata.lower()}'
@@ -59,15 +59,15 @@ def pokemon_search():
                     defense_stat=pokemon_dict['defense_stat'],
                     sprite=pokemon_dict['sprite'],
                 )
-            #add then commit the pokemon to the database
+            # add then commit the pokemon to the database
             db.session.add(pokemon)
             db.session.commit()
-            #flash message and return back to the search page
+            # flash message and return back to the search page
             flash(f'Would you like to add {pokemon.name} to your team? Hit the catch button below!', 'warning')
             return render_template('search.html', form=form, pokemon=pokemon)
       
     return render_template('search.html', form=form)
-    
+ # what if the Pokemon does not exist? need error and redirect back to search 
 
 #catching      
 # @main.route('/catch/<int:poke_id>')
@@ -82,15 +82,17 @@ def pokemon_search():
 @main.route('/catch/<int:poke_id>')
 @login_required
 def catch(poke_id):
+    # querying from Poke table in database 
     poke = Poke.query.get(poke_id)
     print(poke)
-    # seeing if user has the pokemon in their team already
+    
+    # seeing if current user has the pokemon on their team already
     if poke in current_user.Pokemon:
-        flash(f'{poke_id} is already in your team, pick another Pokémon.', 'warning')
+        flash(f'{poke_id} is already on your team, pick another Pokémon.', 'warning')
         return redirect(url_for('main.pokemon_search'))
     
-    # seeing if the team has 6 pokemon
-    if len(current_user.Pokemon) >= 6:
+    # seeing if the team has 5 pokemon
+    if len(current_user.Pokemon) >= 5:
         flash(f'Your team is full, release another Pokémon to catch this one.', 'danger')
         return redirect(url_for('main.pokemon_search'))
     
@@ -106,23 +108,23 @@ def catch(poke_id):
 @main.route('/release/<int:poke_id>')
 @login_required
 def release(poke_id):
-    print(poke_id)
-    # getting the poke from the database
+    # getting the poke from the Poke table in the database
     poke = Poke.query.get(poke_id)
+    print(poke_id)
+
     if poke and current_user.Pokemon:
-    # deleting from the database
-        db.session.delete(poke)
-        db.session.commit()
+    # deleting from the user_poke table in database
+        current_user.removefromteam(poke)
     flash(f'{poke_id} has been released from your team!', 'success')
     return redirect(url_for('main.team'))
     
         
 # Seeing the team
-# querying objects from the database from the Poke table, creating an object (my_team),then passing the pokemon, looping and showing the pokemon on the front end
+# querying objects from the Pokemon relationship (in User table), creating an object (my_team),then passing the pokemon, looping and showing the pokemon on the front end
 @main.route('/team')
 @login_required
 def team():
-    my_team = Poke.query.all()
+    my_team = current_user.Pokemon
     return render_template('team.html', my_team=my_team)
 
 
@@ -130,22 +132,58 @@ def team():
 @main.route('/trainers')
 @login_required
 def trainers():
-    pass
+    # getting users from User table and displaying on team page
+    all_trainers = User.query.all()
+    return render_template('trainers.html', all_trainers=all_trainers)
 
+# Attack just a route to get to battle page?
+@main.route('/attack/<int:user_id>')
+@login_required
+def attack(user_id):
+    all_trainers = User.query.all()
+    print(all_trainers)
+    if current_user == user_id:
+        flash(f'You can not attack yourself, choose another opponent.', 'primary')
+        return render_template('trainers.html', all_trainers=all_trainers)
+    offense_trainer = None
 
-# battle simulation page
+    for trainer in all_trainers:
+        if trainer.id == user_id:
+            offense_trainer = trainer
+    current_trainer = current_user
+    current_pokemon = current_user.Pokemon
+    offense_pokemon = offense_trainer.Pokemon
+    
+    # redirect to battle page
+    return redirect(url_for('main.battle', 
+    user_id=user_id,
+    offense_trainer=offense_trainer,
+    current_trainer=current_trainer, current_pokemon=current_pokemon, offense_pokemon=offense_pokemon))
+    
+    
+# battle page
 @main.route('/battle')
 @login_required
 def battle():
-    pass
+    if current_user == current_user:
+        flash(f'You can not attack yourself.')
+        return render_template('battle.html')
 
+  
+
+    # display the current user team
+# display defending team
+# use sprite, attack stat, hp stat and defense stat for battle 
+# redirect to results page
+ # choosing user to attack
 
 # battle results
 @main.route('/results')
 @login_required
 def results():
     pass
-
+# display the results from the battle and the winning trainer
+# rebattle button or redirect back to trainers for new opponent 
 
 
 

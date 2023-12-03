@@ -1,5 +1,11 @@
+* {
+    font-family: 'Abel', sans-serif;
+    font-family: 'Gabarito', sans-serif;
+  }
+
 body {
-    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyQiZe9CaC2zpmcXv5yw1xXK84qpWN-pIwV4-TCQSFn71otKOddm2V69cTrokYIR23MS8&usqp=CAU');
+    background-image: url('https://c4.wallpaperflare.com/wallpaper/957/704/964/pokemon-fields-ruby-1920x1200-nature-fields-hd-art-wallpaper-preview.jpg');
     background-size: cover;
     height: 100vh;
 }
+

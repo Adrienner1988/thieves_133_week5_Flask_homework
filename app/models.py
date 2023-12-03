@@ -28,6 +28,9 @@ class User(db.Model, UserMixin):
         self.email = email
         self.password = generate_password_hash(password)
 
+    def removefromteam(self, poke):    
+        self.Pokemon.remove(poke)
+        db.session.commit()
 
 # building an instance of a pokemon
 class Poke(db.Model):

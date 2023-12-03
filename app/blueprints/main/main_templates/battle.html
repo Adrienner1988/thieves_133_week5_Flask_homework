@@ -1,17 +1,16 @@
 {% extends 'base.html' %}
 
-{%block styles %}
-<link rel="stylesheet" href="../static/styles/team.css">
-{% endblock %}
-
-{% block title %}
-Pokémon Team
+{% block styles %}
+<link rel="stylesheet" href="/app/static/styles/battle.css">
 {% endblock%}
 
-{% block content %}
-{% include './includes/nav.html' %}
-<h1>Your Pokémon Team</h1>
+{% block title %}
+Pokémon Battle
+{% endblock %}
 
+{%block content %}
+{% include './includes/nav.html' %}
+<!-- battle page -->
 {% if my_team %}
   {% for poke in my_team %}
 
@@ -36,8 +35,6 @@ Pokémon Team
       <h3><b>Defense Stat</b></h3>
       <h4>{{ poke.defense_stat }}</h4>
 
-  
-      <a href="{{ url_for('main.release', poke_id=poke.id ) }}" class="release-btn">Release</a>
     
     </div>
   </div>
