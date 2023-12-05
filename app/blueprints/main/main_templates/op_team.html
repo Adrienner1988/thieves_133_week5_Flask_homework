@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{%block styles %}
+<link rel="stylesheet" href="../static/styles/op_team.css">
+{% endblock %}
+
+{% block title %}
+Pokémon Team
+{% endblock%}
+
+{% block content %}
+{% include './includes/nav.html' %}
+<h1>{{user.full_name}}'s Pokemon</h1>
+
+<a href="{{ url_for('main.battle', user_id=user.id ) }}" class="fight-btn">Fight!</a>
+
+{% if op_team %}
+  {% for poke in op_team %}
+
+  <div class="flip-card">
+    <div class="container">
+      <h1><b>"{{ poke.name }}"</b></h1>
+  
+      <img src="{{ poke.sprite }}" alt="shiny_sprite">
+  
+      <h3><b>Pokédex Number</b></h3>
+      <h4>{{ poke.id }}</h4>
+
+      <h3><b>Ability</b></h3>
+      <h4>{{ poke.ability }}</h4>
+  
+      <h3><b>Attack Stat</b></h3>
+      <h4>{{ poke.attack_stat}}</h4>
+  
+      <h3><b>HP Stat</b></h3>
+      <h4>{{ poke.hp_stat }}</h4>
+  
+      <h3><b>Defense Stat</b></h3>
+      <h4>{{ poke.defense_stat }}</h4>
+    
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% endblock %}

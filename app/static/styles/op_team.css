@@ -1,0 +1,78 @@
+* {
+    font-family: 'Abel', sans-serif;
+    font-family: 'Gabarito', sans-serif;
+  }
+  
+  body {
+    background-image: url('https://c4.wallpaperflare.com/wallpaper/957/704/964/pokemon-fields-ruby-1920x1200-nature-fields-hd-art-wallpaper-preview.jpg');
+    background-size: cover;
+    height: 100vh;
+}
+  
+  h1 {
+    color: #000;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  
+  .form-control {
+    border: 3px solid #000;
+  }
+  
+  .form-control:focus {
+    border: 3px solid #ec6110;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  
+  .fight-btn {
+    box-shadow: 3px 4px 0px 0px #8a2a21;
+    background: linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
+    background-color: #c62d1f;
+    border-radius: 18px;
+    border: 1px solid #d02718;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 10px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #810e05;
+    text-transform: uppercase;
+    margin: 50px;
+  }
+  
+  .fight-btn:hover {
+    background: linear-gradient(to bottom, #f24437 5%, #c62d1f 100%);
+    background-color: #f24437;
+  }
+  
+  .flip-card {
+    padding-bottom: 20px;
+    display: inline-flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    padding-left: 50px;
+  }
+  
+  .container {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #000;
+    border: 3px solid #000;
+    border-radius: 25px;
+    background: #757F9A;
+    background: -webkit-linear-gradient(to bottom, #D7DDE8, #757F9A);
+    background: linear-gradient(to bottom, #D7DDE8, #757F9A);
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
