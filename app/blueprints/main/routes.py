@@ -150,36 +150,46 @@ def attack(user_id):
 @main.route('/battle/<int:user_id>')
 @login_required
 def battle(user_id):
-    offensive_user = User.query.get(user_id)
-    offense_pokemon= offensive_user.Pokemon
+    #querying the users and their pokemon for battle depending on team size and redirecting if they are not full for battle
+    offense_user = User.query.get(user_id)
+    offense_pokemon= offense_user.Pokemon
+    if len(offense_pokemon) < 5:
+        flash("Opponent doesn't have enough Pokémon for a battle, pick another opponent.", 'danger')
+        return redirect(url_for('main.trainers'))
+
     trainer = User.query.get(current_user.id)
-    team= trainer.Pokemon
+    team = trainer.Pokemon
+
+    if len(team) < 5:
+        flash('You need five Pokémon for a battle.', 'warning')
+        return redirect(url_for('main.pokemon_search'))
     
     return render_template('battle.html', offense_pokemon=offense_pokemon)
 
 
 # battle results
-@main.route('/results')
+@main.route('/results/<int:user_id>')
 @login_required
-def results():
-    if len(team) >= 2:
-        offense = User.query.filter(User.id != current_user.id).first()  # Get the first opponent
-        offense_team = offense.Pokemon
-        if len(offense_pokemon) >= 1:
-            # Start the battle (you can implement your battle logic here)
-            # For simplicity, let's just compare the attack_stat of the first Pokemon of each trainer
-            user_pokemon = team[0]
-            offense_pokemon = offense_team[0]
-            # Determine the winner based on attack_stat
-            winner = user_pokemon if user_pokemon.attack_stat > offense_pokemon.attack_stat else offense_pokemon
-            flash(f'{team} is the winner!', 'success')
-            return render_template('main.results.html', winner=winner)
-        else:
-            flash(f"Opponent doesn't have enough Pokemon for a battle.", 'danger')
-            return render_template('battle.html', team=team)
-    else:
-        flash(f"You need at least two Pokemon for a battle.", 'warning')
-        return render_template('battle.html', team=team)
+def results(user_id):
+    offense_user = User.query.get(user_id)
+    print(user_id, 'line 175')
+    offense_pokemon= offense_user.Pokemon
+
+    trainer = User.query.get(current_user.id)
+    print(current_user.id, 'line 179')
+    team = trainer.Pokemon
+
+    # Compare the attack_stat of the first Pokémon of each trainer
+    winner = None
+
+    if offense_pokemon.attack_stat > team.defense_stat:
+        winner = trainer
+      
+    elif trainer.attack_stat > offense_pokemon.defense_stat:
+        winner = offense_user
+        print(winner, 'line 189')
+
+    return redirect(url_for('main.results'), winner=winner)
 
 
 
