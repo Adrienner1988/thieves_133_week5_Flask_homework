@@ -13,10 +13,6 @@ Pokémon Battle Results
 <h1>Battle Results</h1>
 
 {% if winner is not none %}
-
-<h2>The winner is: {% if winner %}You!
-  {% else %}Opponent!{% endif %}</h2>
-
-
+<h2>{{ winner.full_name }}!</h2>
 {% endif %}
 {% endblock %}

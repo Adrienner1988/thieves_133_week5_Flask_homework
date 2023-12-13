@@ -152,6 +152,7 @@ def attack(user_id):
 def battle(user_id):
     #querying the users and their pokemon for battle depending on team size and redirecting if they are not full for battle
     offense_user = User.query.get(user_id)
+    print(offense_user, 'line 155')
     offense_pokemon= offense_user.Pokemon
     if len(offense_pokemon) < 5:
         flash("Opponent doesn't have enough Pokémon for a battle, pick another opponent.", 'danger')
@@ -164,33 +165,34 @@ def battle(user_id):
         flash('You need five Pokémon for a battle.', 'warning')
         return redirect(url_for('main.pokemon_search'))
     
-    return render_template('battle.html', offense_pokemon=offense_pokemon)
-
-
-# battle results
-@main.route('/results/<int:user_id>')
-@login_required
-def results(user_id):
-    offense_user = User.query.get(user_id)
-    print(user_id, 'line 175')
-    offense_pokemon= offense_user.Pokemon
-
-    trainer = User.query.get(current_user.id)
-    print(current_user.id, 'line 179')
-    team = trainer.Pokemon
-
-    # Compare the attack_stat of the first Pokémon of each trainer
+    # mathing the battle
     winner = None
-
-    if offense_pokemon.attack_stat > team.defense_stat:
-        winner = trainer
-      
-    elif trainer.attack_stat > offense_pokemon.defense_stat:
+    op_total = 0
+    for poke in offense_pokemon:
+        op_total += poke.attack_stat
+        op_total += poke.hp_stat
+        op_total += poke.defense_stat
+    
+    my_total = 0
+    for poke in team:
+        my_total += poke.attack_stat
+        my_total += poke.hp_stat
+        my_total += poke.defense_stat
+        
+    # battle results
+    if op_total > my_total:
         winner = offense_user
-        print(winner, 'line 189')
+    elif op_total < my_total:
+        winner = trainer
+    elif op_total == my_total:
+        flash(f"It's a tie!")
+        
+    return render_template('battle.html', offense_pokemon=offense_pokemon, winner=winner)
+    
 
-    return redirect(url_for('main.results'), winner=winner)
+   
 
+   
 
 
 
